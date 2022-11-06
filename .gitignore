@@ -1,0 +1,14 @@
+
+
+.DS_Store
+Pipfile
+Pipfile.lock
+.python-version
+pyenv.cfg
+
+# Directories
+/bin
+/include
+/share
+/src
+/lib
