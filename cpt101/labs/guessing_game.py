@@ -19,14 +19,6 @@ def user_input():
     return user
 
 def check_guess(guess):
-    guess = user_input()
-
-    if guess == da_number:  # Guessed right!
-        print("""\nᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ  !CONGRATULATIONS! ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ
-              ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ""")
-        # Returning True because maybe I wanna user this for another program or
-        # something, I don't know, leave me alone
-        return True
 
     # As long the guess isn't right, display message to user letting them know
     # if they went to high or too low, keeping track of each attempt as the
@@ -42,6 +34,12 @@ def check_guess(guess):
     
         guess = user_input()    # Get user input again
 
+    if guess == da_number:  # Guessed right!
+        print("""\nᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ  !CONGRATULATIONS! ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ
+              ᕙ(▀̿̿Ĺ̯̿̿▀̿ ̿)ᕗ""")
+        # Returning True because maybe I wanna user this for another program or
+        # something, I don't know, leave me alone
+        return True
 
 if __name__ == "__main__":
     check_guess(user_input())
