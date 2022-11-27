@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Cory Parker
 # CPT101
+# Rock, Paper, Scissors
 from random import *
 
 def computer(token):
@@ -29,7 +30,8 @@ def game(comp):
         while user == comp:
             comp = computer(randint(1, 3))
             user = input("\nRock, Paper, or Scissors?\n ").lower()
-
+    
+    # Comparing between either/or conditions
     if (comp == "rock" and user == "scissors") or (comp == "scissors" and
                                                      user == "rock"):
         print(f"Rock WINS!! \n Computer: {comp} ( ͡ʘ ͜ʖ ͡ʘ)")

@@ -41,15 +41,14 @@ def pig(player):
     quit = False
     while quit != "q":
         die = randint(1, 6)
-        print(die)
         amount += die
         print(amount)
-        quit = input("\nWanna stop here? (Type 'q' is so)\n")
+        quit = input("\nWanna stop here? (Type 'q' if so)\n")
 
         if quit == "q":
             break
 
-        elif amount == 20:
+        elif amount >= 20:
             return f"{player} Wins!"
 
 
