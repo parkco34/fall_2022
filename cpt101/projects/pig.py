@@ -3,54 +3,96 @@
 # CPT101 => PIG
 from random import randint
 """
-Pig is a game that has two players (in our case one human and one computer) that alternate turns.  
-Each player’s goal is to get 100 points rolled on a normal six-sided die first.  
-Each turn consists of the rolling the die repeatedly until you get a 1 or decide to stop.  
-As long as you roll a 2-6, you will add this amount to your total for that turn.  
-But if you roll a 1 during your turn, your turn ends and you receive zero points for that entire turn (erasing all of the progress you made since you last agreed to stop).  
-If you decide to stop rolling at any point in your turn, your points for that turn are then added to the overall score.  
-The overall score is then safe from future rolls.  
-The trick is knowing how long to push it before we should stop and save our gains. See end of this document for an example of a game of pig
-------------------------------------------------------------------------------------------------------------------------
-Structure Plan:
-1) Create Die, using random module for the dice rolls
-2) Create Players (human and computer), alternating turns with each die roll
-3) If die roll returns a number between 2 and 6, then add to current amount.
-Else if die roll returns a 1, player's amount goes to zero. But if player
-decides to quit the turn, player keeps amount until his next turn.
-First one to 100 wins.
+Two player game where each player alternates between rolls, where for each
+turn, you iteratively roll die until you get a one or stop.  If you choose to
+stop, your consectutive points are  added to your current total.  If you roll
+a one, zero gets added to your current total.
 ------------------------------------------------------------------------------------------------------------------------
 """
-die = randint(1, 6)
-
-def player(num=0):
-    """
-    Input of a 1 or 0 will determine who goes first, where the human player
-    goes first by default, returning the name of the player who wins.
-    """
-    if num % 2 == 0:
-        player = input("Please enter your name: \n")
-        return player
+def die_roll(roll=True):
+    # Rolls the die, returning a random integer between 1 and 6
+    if not roll:
+        pass    # False boolean value (None type)
 
     else:
-        return "Computer"
+        return randint(1, 6)
 
+def computer_turn(die):
+    # Deals with each Computer roll, returning the score for that turn
+    if die == 1:
+        return None
 
-def pig(player):
-    amount= 0
+    else:
+        return die
+
+def user_turn(die):
+    # Handes interactions with the user, returns score for that turn
+    if die == 1:
+        return None
+
+    else:
+        return die
+
+def user_choice(quit):
+    # Asks user if they wanna stop or keep rolling
+
+    if quit == "q":
+        return True
+
+    else:
+        return False
+
+def victory_checker(player1, computer):
+    # Input as player totals, returning the maximum
+    if player1 > computer:
+        return f"\nUser wins with {player1}!\nComputer has {computer}\n"
+
+    elif player1 == computer:
+        return f"\nIt's a TIE!! \nComputer: {computer} and User: {player1}\n"
+
+    elif player1 < computer:
+        return f"\nComputer wins with {computer}\nUser has {player1}\n"
+
+def main():
+    # Handles overall scores, main loop to alternate turns, winner anouncement
+    # Initial values
+    player1 = 0
+    computer = 0
+    die = die_roll()
+    count = 0   # Iteration count for alternating turns
     quit = False
-    while quit != "q":
-        die = randint(1, 6)
-        amount += die
-        print(amount)
-        quit = input("\nWanna stop here? (Type 'q' if so)\n")
+    
+    while (player1 < 100) and (computer < 100):
 
-        if quit == "q":
-            break
+        if count % 2 == 0:  # User is an even integer
+            while not quit:
+                if die == 1:
+                    print("\nUser die is 1\n")
+                    die = die_roll()
+                    continue
+                
+                else:
+                    player1 += user_turn(die)  # Add values
+                    print(f"\nUser roll: {die}\nCurrent Total: {player1}\n")
+                    quit = user_choice(input("\nType 'q' to stop\n"))
+                    die = die_roll()    # Roll die
 
-        elif amount >= 20:
-            return f"{player} Wins!"
+            count += 1
+
+        else:
+            while True:
+                if die == 1:
+                    die = die_roll()
+                    break
+
+                computer += computer_turn(die)   # Adds values 
+                print(f"\nComputer roll:  {die}\nCurrent Total: {computer}\n")
+                die = die_roll()    # Roll die
+
+            count += 1
+    
+    print(f"\nWINNER: {victory_checker(player1, computer)}\n")
 
 
 if __name__ == "__main__":
-    pig(player())
+    main()
