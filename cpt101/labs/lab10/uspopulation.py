@@ -19,7 +19,18 @@ def get_list(file_obj):
 
 def get_average(_list):
     # Returns average of list as integer
-    return int(sum(_list) / len(_list))
+    prev = _list[0]
+    annual_change_list = []
+
+    for i in range(1, len(_list)+1):
+        if len(_list) == i:
+            break
+
+        diff = abs(_list[i] - prev)
+        annual_change_list.append(diff)
+        prev = _list[i]
+
+    return int(sum(annual_change_list)/ len(annual_change_list))
 
 def get_max_increase(_list):
     # Returns the maximnum increase in population
