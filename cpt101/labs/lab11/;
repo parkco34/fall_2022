@@ -19,7 +19,7 @@ prices, sorted from lowest price to highest
 prices, sorted from highet price to lowest
 """
 
-def average_price_year(file, year, mode=None):
+def average_price_year(file, year):
     # Calculates average price per year
     prices = [] # Empty list for adding the prices of each year
    
@@ -27,16 +27,9 @@ def average_price_year(file, year, mode=None):
     for price in file:
         if year in price:
             prices.append(float(price[11:]))
-   
-    if mode == "avg":
-        # Returns AVERAGE Gas prices for that year
-        return sum(prices) / len(prices)
-
-    elif mode == "high":    # Returns highest gas price for year
-        return max(prices)
-
-    elif mode == "low": # Returns lowest gas price for year
-        return min(prices)
+    
+    # Returns average Gas prices for that year
+    return sum(prices) / len(prices)
 
 def average_price_month(file, month):
     # Calculates average price per month
@@ -50,12 +43,16 @@ def average_price_month(file, month):
     # Returns average gas prices for each month over the ten years or so
     return sum(prices) / len(prices)
 
+def high_low_price_year(year):
+    # For each year, fin date, highest/lowest price
+    pass
+
 def low_to_high():
-    # Generates a text file with dates and prices, from lowest to highest
+    # Returns a list of prices, from lowest to highest, generating a text file
     pass
 
 def high_to_low():
-    # Generates a text file with dates and prices, from highest to lowest
+    # Returns a list of prices, from highest to lowest generating a text file
     pass
 
 def main():
