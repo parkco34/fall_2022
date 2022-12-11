@@ -16,7 +16,8 @@ Output should be:
 
 def get_list():
     # Creates list with the 20 user input values
-    return [int(input("\nPlease enter 20 integers:\n")) for i in range(20)]
+    return [int(input("""\nPlease enter 20 integers (one at a time, hitting enter
+                     after each input):\n""")) for i in range(20)]
 
 def lowest(user_list):
     # returns lowest number in list

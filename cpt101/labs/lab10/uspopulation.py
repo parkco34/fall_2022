@@ -15,7 +15,7 @@ where one could search for average, max and min values
 """
 def get_list(file_obj):
     # Takes a file object and returns the contents as a list
-    return [int(i) for i in file_obj.split()]
+    return [int(i) for i in file_obj.read().split()]
 
 def get_average(_list):
     # Returns average of list as integer
@@ -41,8 +41,9 @@ def get_smallest_increase(_list):
     return min(_list)
 
 def main():
-    file = open("USPopulation.txt", "r").read()  # Reads file
+    file = open("USPopulation.txt", "r") # Reads file
     ann_population = get_list(file)
+    file.close()    # Close file
 
     print(f"""
 Average: {get_average(ann_population)}\n
