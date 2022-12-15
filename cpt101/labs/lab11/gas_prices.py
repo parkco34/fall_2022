@@ -38,12 +38,13 @@ def average_price_year(_list, year, mode=None):
     elif mode == "low": # Returns lowest gas price for year
         return min(prices)
 
-def average_price_month(_list):
+def average_price_month(_list, month):
     # Calculates average price per month, taking in a list and month
     prices = []
 
     # Iterates thru months, appending gas prices correpsonding to given month
-    for price in range(1, 13):
+    for price in _list:
+        if month == price[:2]:
             prices.append(float(price[11:]))
 
     # Returns average gas prices for each month over the ten years or so
@@ -61,34 +62,40 @@ def high_to_low(_list):
 
     return _list
 
-def output_format(_list):
-    # Prints data in a somwhat nice way
-    dash = '-' * 30
-    for i,j in enumerate(_list):
-        pass
-
 def main():
     file = open("gas_prices.txt", "r")  # Creates file object
     data = file.read().split()
     file.close()    # Close file object
     
     # Average gas prices per YEAR loop
-    year_set = set(item[6:10] for item in data)
+    year_list = list(set(item[6:10] for item in data))
+    year_list.sort()
+    print(year_list)
+
     print("\nAVERAGE GAS PRICE PER YEAR:\n")
-    for year in year_set:
+    for year in year_list:
         print(f"""
 {year}: {round(average_price_year(data, year), 2)}
               """, end=" ")
 
-    # Formatting output
-#    row_format = "{:>15}" * (len())
-
     # Average MONTHLY gas prices loop
     print("\nAVERAGE GAS PRICE PER MONTH:\n")
-    for year in year_set:
+    for month in ["0"+str(mnth) if mnth<10 else str(mnth) for mnth in
+                  range(1,13)]:
         print(f"""
-{round(average_price_month(data), 2)}
+{month}: {round(average_price_month(data, month), 2)}
               """, end=" ")
+
+    
+    # Writes to text file the high-to-low, low-to-high values
+    text = open("high_to_low.txt", "w")
+    text.writelines(high_to_low(data))
+    text.close()
+
+    text = open("low_to_high.txt", "w")
+    text.writelines(low_to_high(data))
+    text.close()
 
 if __name__ == "__main__":
     main()
+
