@@ -38,13 +38,12 @@ def average_price_year(_list, year, mode=None):
     elif mode == "low": # Returns lowest gas price for year
         return min(prices)
 
-def average_price_month(_list, month):
+def average_price_month(_list):
     # Calculates average price per month, taking in a list and month
     prices = []
 
     # Iterates thru months, appending gas prices correpsonding to given month
-    for price in _list:
-        if month in price:
+    for price in range(1, 13):
             prices.append(float(price[11:]))
 
     # Returns average gas prices for each month over the ten years or so
@@ -87,17 +86,9 @@ def main():
     # Average MONTHLY gas prices loop
     print("\nAVERAGE GAS PRICE PER MONTH:\n")
     for year in year_set:
-        for month in range(1, 13):
-            # If month starts with 0 or 1
-            if month < 10:
-                month = "0" + str(month)
-
-            else:
-                month = str(month)
-
-            print(f"""
-    {month}: {round(average_price_month(data, month), 2)}
-                  """, end=" ")
+        print(f"""
+{round(average_price_month(data), 2)}
+              """, end=" ")
 
 if __name__ == "__main__":
     main()

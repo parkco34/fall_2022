@@ -14,7 +14,6 @@ def pig_latin(sentence):
     # Removes first letter of each word, placing it at the end of the word
     pig = []
     sentence_list = sentence.split()
-    breakpoint()
 
     for word in sentence_list:
         letter = word[0]
