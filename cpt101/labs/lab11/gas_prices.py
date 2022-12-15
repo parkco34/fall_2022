@@ -64,12 +64,14 @@ def high_to_low(_list):
 
 def output_format(_list):
     # Prints data in a somwhat nice way
-    pass
+    dash = '-' * 30
+    for i,j in enumerate(_list):
+        pass
 
 def main():
     file = open("gas_prices.txt", "r")  # Creates file object
     data = file.read().split()
-    file.close()    # Close file objectj
+    file.close()    # Close file object
     
     # Average gas prices per YEAR loop
     year_set = set(item[6:10] for item in data)
@@ -84,17 +86,18 @@ def main():
 
     # Average MONTHLY gas prices loop
     print("\nAVERAGE GAS PRICE PER MONTH:\n")
-    for month in range(1, 13):
-        # If month starts with 0 or 1
-        if month < 10:
-            month = "0" + str(month)
+    for year in year_set:
+        for month in range(1, 13):
+            # If month starts with 0 or 1
+            if month < 10:
+                month = "0" + str(month)
 
-        else:
-            month = str(month)
+            else:
+                month = str(month)
 
-        print(f"""
-{month}: {round(average_price_month(data, month), 2)}
-              """, end=" ")
+            print(f"""
+    {month}: {round(average_price_month(data, month), 2)}
+                  """, end=" ")
 
 if __name__ == "__main__":
     main()
