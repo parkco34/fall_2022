@@ -44,4 +44,4 @@ def main():
         for i in keep_dice(die):
             # Loop through and pop() the index of the list of die to keep into
             # another list 
-
+            pass
