@@ -1,0 +1,11 @@
+Pipfile*
+pyvenv.cfg
+
+/inlcude
+/bin
+/lib
+/__pycache__
+
+clear.spec
+/build
+/dist
