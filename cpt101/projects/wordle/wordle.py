@@ -28,7 +28,6 @@ PLAN:
         and get another guess...
     - If guess is INVALID, it doesn't count and the user can guess again
 
-    - Display BOARD as a grid of 
 """
 from random import choice
 
@@ -62,6 +61,11 @@ def main():
     # Random word
     word = generate_word()
 
+    print("\nWELCOME TO MY WORDLE GAME\n")
+    print("""\n\n 
+Correct letter in correct position = \033[0;34m COLOR \033[0;0m 
+\nCorrect letters in incorrect position= \033[1;33m COLOR \033[0;0m\n
+    """)
     while not GAMEOVER:
         guess = list(input("Guess the word: \n"))
         
@@ -81,7 +85,7 @@ def main():
         print("\n")
         for letter in guess:
             if letter in correct_letters(guess, word):
-                print(f"\033[0;32m {letter}\033[0;0m", end=" ")
+                print(f"\033[0;31m {letter}\033[0;0m", end=" ")
 
             elif letter in incorrect_positions(guess, word):
                 print(f"\033[1;33m {letter}\033[0;0m", end=" ")
