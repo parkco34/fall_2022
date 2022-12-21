@@ -85,7 +85,7 @@ Correct letter in correct position = \033[0;34m COLOR \033[0;0m
         print("\n")
         for letter in guess:
             if letter in correct_letters(guess, word):
-                print(f"\033[0;31m {letter}\033[0;0m", end=" ")
+                print(f"\033[0;34m {letter}\033[0;0m", end=" ")
 
             elif letter in incorrect_positions(guess, word):
                 print(f"\033[1;33m {letter}\033[0;0m", end=" ")
